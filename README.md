@@ -5,16 +5,7 @@ My task is to build useful funnel chart from raw_events table data.
 1. Analyze the data in raw_events table. Spend time querying the table, getting more familiar with data. Identify events captured by users visiting the website.																									
 * The data in raw_events table captures a lot of events from users based on their timestamps. This can be useful for a number of analysis. However sometimes more data does not help as it can inflate the results. I.e. if we want to see how many users have gone to the checkout the one user who may have gone back and forth to checkout for 8 times can be dangerous when building a funnel chart as it can overpresent how many users in total get to the checkout. Always be mindful of duplicate data and how it can affect your analysis. 																									
 * First Order of the business is to write a query that eliminates the duplicates for our funnel analysis.																									
-The query should contain all of the columns from raw_events table. It should however only have 1 unique event per user_pseudo_id. For example:
-                        
-Original table					                                                       Unique Table																				
-user_pseudo_id	Event	        Timestamp	Other columns		                      user_pseudo_id	Event	        Timestamp	Other columns																	
-7965612	        session_start	1605430896492843	xx		                               7965612	session_start	1605430896492843	xx																	
-7965612	        view_item	    1607621666018444	xx		                               7965612	view_item	    1607621666018444	xx																	
-7965612	        view_item	    1607656387918361	xx		                               7965612	add_to_cart	  1607570937682642	xx																	
-7965612	        add_to_cart	  1607570937682642	xx																						
-7965612	        view_item	    1607182981443872	xx																						
-* In case of duplicate events the chosen event should be the first one (based on event_timestamp)																									
+The query should contain all of the columns from raw_events table.																									
 																									
 2. Now that you have your unique events table create a sales funnel chart from events in it. Not all events are relevant, productive to be used in this chart. Identify & collect data that you think could be used																									
 * Use between 4 to 6 types of events in this analysis.																									
@@ -26,10 +17,7 @@ user_pseudo_id	Event	        Timestamp	Other columns		                      user
 Task format.																									
 1. Create a query  for unique events. Copy this query into the Queries used spreadsheet.																									
 2. Write a new query that aggregates your identified events per top 3 countries. Copy this query into the Queries used spreadsheet.																									
-3. Create a table showing the numbers of events' that you want to use in the funnel analysis. Add event_order and  the percentage drop off values, as in the Example:																									
-event_order	event_name	1st_Country_events	2nd_Country_events	3rd_Country_events	Full_perc	1st_country_perc_drop	2nd_country_perc_drop	3rd_country_perc_drop																	
-1	          Event 1	               50,025 	           25,174 	             11233	100.00%	                100.00%	              100.00%	              100.00%																	
-2	          Event 2	                7,145 	            5,117              	  2300	16.31%	                 14.28%	               20.33%	               20.48%																	
+3. Create a table showing the numbers of events' that you want to use in the funnel analysis.
 																									
 * You can use both spreadsheets and SQL functionality to get this data.																									
 * Bonus point for creating all the columns in SQL. 																									
